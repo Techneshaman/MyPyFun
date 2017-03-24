@@ -11,31 +11,25 @@ import re
 # print("\nAfter:\n")
 # print(re.sub(regexp2, "", text1))
 
-url = 'http://www.nbp.pl/home.aspx?f=/kursy/kursya.html'
+url = 'http://www.gazeta.pl/0,0.html'
 response = urllib3.connection_from_url(url)
 html = response.urlopen('GET', url)
 soup = bs4.BeautifulSoup(html.data, 'html.parser')
 soup_title = soup.title
-soup_tables = soup.find_all('table')
+soup_text = soup.find_all('p')
 
-
-class HTMLTableParser():
-    def __init__(self, input_table):
-        self.input_table = input_table
-
-    def get_table(self):
-        print("NEW TABLE")
-        table_soup = bs4.BeautifulSoup(str(self.input_table), 'html.parser')
-        rows_list_iter = table_soup.find_all('tr')
-        print('Rows in table:', len(list(rows_list_iter)))
-        for item in rows_list_iter:
-            print("NEXT LINE")
-            for child in item.children:
-                if child !='\n':
-                    print("NEXT CELL:", child.text)
-        print("\n\n\n")
+for paragraph in soup_text:
+    print(type(paragraph))
+    if paragraph.a is not None:
+        print(paragraph.a['href'])
+        link = paragraph.a['href']
+        regexp_html = ".*?\.html"
+        if re.match(regexp_html, link) is not None:
+            start_position_for_fit = re.match(regexp_html, link).span()[0]
+            end_position_for_fit = re.match(regexp_html, link).span()[1]
+            print(link[start_position_for_fit: end_position_for_fit])
+            website = link.split('/')[2]
+            print(website)
+    print("TEXT:", paragraph.text)
 
 print(soup_title)
-for item in soup_tables:
-    parser = HTMLTableParser(item)
-    parser.get_table()
