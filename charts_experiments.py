@@ -1,8 +1,19 @@
 import matplotlib.pyplot as plotter
+import random
 
-data_coord_x = [1, 2, 3, 4]
-data_coord_y = [2, 7, 14, 3]
-labels = ['alef', 'bet', 'ce', 'doo']
-plotter.plot(data_coord_x, data_coord_y, 'o')
-plotter.xticks(data_coord_x, labels)
+# Let's make a circlish cloud out of normal distribution
+
+x_coord_list = []
+y_coord_list = []
+
+AMONUT_OF_POINTS = 1000
+
+for i in range(AMONUT_OF_POINTS):
+    coord_x = random.gauss(0,1)
+    coord_y = random.gauss(0,1)
+
+    x_coord_list.append(coord_x)
+    y_coord_list.append(coord_y)
+
+plotter.plot(x_coord_list, y_coord_list, 'o')
 plotter.show()
