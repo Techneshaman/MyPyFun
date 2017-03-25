@@ -6,15 +6,16 @@ import random
 x_coord_list = []
 y_coord_list = []
 
-AMONUT_OF_POINTS = 1000
+AMONUT_OF_POINTS = 300
 
 functions_dict = {'normal': random.gauss,
                   'uniform': random.uniform,
-                  'triangular': random.triangular}
+                  'triangular': random.triangular
+                  }
 
 functions_param_dict = {'normal': (0, 1),
                         'uniform': (-3, 3),
-                        'triangular': (-3, 3, 0.75)}
+                        'triangular': (-3, 3, 0.6)}
 
 charts_matrix = []
 
@@ -57,5 +58,6 @@ for item in charts_matrix:
     plotter.subplot(subplots_positions[plot_position])
     plot_position += 1
     plotter.plot(x_coord_list, y_coord_list, 'o')
+    plotter.title(item)
 
 plotter.show()
