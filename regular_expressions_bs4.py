@@ -23,13 +23,14 @@ for paragraph in soup_text:
     if paragraph.a is not None:
         print(paragraph.a['href'])
         link = paragraph.a['href']
-        regexp_html = ".*?\.html"
+        regexp_html = "http.*?\.html"
         if re.match(regexp_html, link) is not None:
             start_position_for_fit = re.match(regexp_html, link).span()[0]
             end_position_for_fit = re.match(regexp_html, link).span()[1]
             print(link[start_position_for_fit: end_position_for_fit])
             website = link.split('/')[2]
-            print(website)
+            print("WEBSITE:", website)
+    print("PARAGRAPH ATTRS:", paragraph.attrs)
     print("TEXT:", paragraph.text)
 
 print(soup_title)
