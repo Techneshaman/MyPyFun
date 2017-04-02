@@ -1,13 +1,13 @@
 import sys, pygame
 pygame.init()
 
-size = width, height = 1000, 800
-speed = [10, 10]
-black = 0, 0, 0
+size = width, height = 600, 400
+speed = [10, 3]
+black = 100, 200, 100
 
 screen = pygame.display.set_mode(size)
 
-ball = pygame.image.load("/Users/michalwitkowski/Documents/MyPic.jpg")
+ball = pygame.image.load("/Users/michalwitkowski/PyWorkspace/MyPyFun/pygame_experiments/assets/ball.png")
 ballrect = ball.get_rect()
 
 while 1:
@@ -20,6 +20,6 @@ while 1:
     if ballrect.top < 0 or ballrect.bottom > height:
         speed[1] = -speed[1]
 
-    screen.fill(black)
     screen.blit(ball, ballrect)
     pygame.display.flip()
+    screen.fill(black)
