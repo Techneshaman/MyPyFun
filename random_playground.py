@@ -15,7 +15,7 @@ print('Input list of lists:', data2)
 random.shuffle(data2)
 print('Shuffled list of lists:', data2)
 
-# looks like documentation is wrong? random.choices doesn't exist. Use random.sample instead or sth.
+# looks like documentation is wrong? random.choices doesn't exist for python 3.5. Use random.sample instead or sth.
 
 print("Random element of input list:", random.choice(data))
 print("Random element of input list of lists:", random.choice(data2))
